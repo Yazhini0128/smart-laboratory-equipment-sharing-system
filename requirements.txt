@@ -1,4 +1,7 @@
+# Raspberry Pi hardware dependencies (install on Raspberry Pi only)
 RPi.GPIO
 mfrc522
 RPLCD
 smbus2
+
+# No third-party packages are required for DEMO mode.

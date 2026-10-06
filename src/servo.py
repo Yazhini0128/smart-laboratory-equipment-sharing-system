@@ -1,5 +1,8 @@
+from hardware import HardwareInterface
+_hw = HardwareInterface()
+
 def unlock_servo():
-    print("Servo: UNLOCK")
+    _hw.unlock()
 
 def lock_servo():
-    print("Servo: LOCK")
+    _hw.lock()

@@ -1,2 +1,5 @@
+from hardware import HardwareInterface
+_display = HardwareInterface()
+
 def display(message):
-    print(f"LCD: {message}")
+    _display.lcd(message)

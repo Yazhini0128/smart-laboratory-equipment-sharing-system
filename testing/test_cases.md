@@ -1,11 +1,11 @@
 # Test Cases
 
-| ID | Test | Expected Result |
+| ID | Input/Action | Expected Result |
 |---|---|---|
-| TC01 | Valid RFID | Student authenticated |
-| TC02 | Invalid RFID | Red LED + buzzer |
-| TC03 | Equipment available | Equipment allocated |
-| TC04 | Equipment unavailable | Student added to FCFS queue |
-| TC05 | Equipment returned | Database updated |
-| TC06 | Waiting students exist | Next student selected |
-| TC07 | Multiple requests | Mutex prevents conflicting updates |
+| TC01 | `DEMO_UID_001` requests available equipment | Student authenticated and equipment allocated |
+| TC02 | `INVALID_UID` requests equipment | Request rejected; red LED/buzzer indication |
+| TC03 | Student 1 requests equipment 1 | Equipment status becomes ALLOCATED |
+| TC04 | Student 2 requests occupied equipment 1 | Student enters FCFS queue |
+| TC05 | Current user returns equipment 1 | Equipment becomes AVAILABLE |
+| TC06 | Queue contains Student 2 | Student 2 receives next allocation |
+| TC07 | Concurrent allocation attempts | Mutex serializes the critical section |

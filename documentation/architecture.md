@@ -1,20 +1,48 @@
 # System Architecture
 
-START -> RFID Scan -> Authenticate Student
+```text
+START
+  |
+Student scans RFID
+  |
+Authenticate Student
+  |---- NO ----> Red LED + Buzzer ----> END
+  |
+ YES
+  |
+Acquire Mutex
+  |
+Check Equipment Availability
+  |---- NO ----> Add to FCFS Queue -> Display Queue Position
+  |                              -> Wait for Return -> Check Queue
+  |---- YES
+  |
+Allocate Equipment
+  |
+Update SQLite Database
+  |
+Release Mutex
+  |
+Unlock Servo + LCD + Green LED
+  |
+Student Uses Equipment
+  |
+Student Returns Equipment
+  |
+Update Database
+  |
+Check Waiting Queue
+  |---- NO ----> END
+  |
+ YES
+  |
+Select Next Student
+  |
+Acquire Mutex -> Allocate -> Update DB -> Release Mutex
+  |
+Unlock Servo + LCD
+  |
+END
+```
 
-Authentication successful?
-NO -> Red LED + Buzzer -> END
-YES -> Acquire Mutex -> Check Equipment Availability
-
-Available?
-YES -> Allocate -> Update SQLite -> Release Mutex -> Unlock Servo
--> LCD Allocation Message -> Green LED -> Student Uses Equipment
--> Student Returns -> Update Database -> Check Waiting Queue
-
-NO -> Add Student to FCFS Queue -> Display Queue Position
--> Wait for Return -> Check Waiting Queue
-
-Students Waiting?
-NO -> END
-YES -> Select Next Student -> Acquire Mutex -> Allocate
--> Update Database -> Release Mutex -> Unlock Servo -> LCD -> END
+The mutex is not held while a student physically uses or waits for equipment. It protects only the shared resource state update.

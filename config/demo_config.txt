@@ -1,0 +1,10 @@
+Demo RFID UIDs:
+DEMO_UID_001 = Student 1
+DEMO_UID_002 = Student 2
+
+Equipment:
+1 = Digital Multimeter
+2 = Oscilloscope
+
+Run:
+python src/main.py --demo
