@@ -1,5 +1,2 @@
-# Final Report
-
-Place the final PDF report in this folder as `project_report.pdf`.
-
-The report should describe the implementation honestly. Hardware-specific results should be marked as verified only after testing on the Raspberry Pi.
+# Project Report
+This folder contains the editable and PDF report generated from the supplied project presentation. Review the report against actual code and faculty format. Complete certificate/declaration only with approved institution-specific text and authorised signatures. Do not invent test results.

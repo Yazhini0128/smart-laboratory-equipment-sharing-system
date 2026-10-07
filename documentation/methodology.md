@@ -1,13 +1,9 @@
 # Methodology
+1. **Identification:** RC522 reads the RFID UID.
+2. **Authentication:** application checks the UID against authorised student records.
+3. **Validation:** check equipment availability; if occupied, enqueue the request using FCFS.
+4. **Allocation:** protect shared allocation/database state with a mutex and record the event.
+5. **Physical access:** servo unlocks the station and LCD shows the equipment ID.
+6. **Completion:** after return, update status and check the waiting queue.
 
-1. Student presents an RFID card.
-2. UID is normalized and authenticated against registered students.
-3. Invalid authentication produces a red LED/buzzer indication.
-4. A valid request enters the resource manager.
-5. A mutex protects the availability check and allocation update.
-6. SQLite records the allocation.
-7. Hardware feedback opens the equipment enclosure and displays status.
-8. If unavailable, the request is placed in an FCFS queue.
-9. On return, the resource is marked available.
-10. The next waiting student is selected and allocated.
-11. Transaction records provide an audit trail.
+The mutex should protect shared state changes, not remain held while a student uses equipment or waits.
